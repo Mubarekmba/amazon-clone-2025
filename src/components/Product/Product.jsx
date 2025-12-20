@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // CSS module for product layout
-import classes from "./Product.module.css";
+import classes from "./product.module.css";
 
 // Loading spinner component
 import Loader from "../../Pages/Loader/Loader";
