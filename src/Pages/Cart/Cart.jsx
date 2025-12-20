@@ -8,7 +8,7 @@ import Layout from "../../components/Layout/Layout";
 import { DataContext } from "../../components/DataProvider/DataProvider";
 
 // Action types for reducer
-import { Type } from "../../Utility/action.type";
+import { Type } from "../../utility/action.type";
 
 // Styles
 import styles from "./cart.module.css";
