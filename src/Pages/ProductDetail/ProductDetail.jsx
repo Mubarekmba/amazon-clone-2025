@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 // API base URL
-import { FakeStoreAPI_BaseURL } from "../../API/EndPoints";
+import { FakeStoreAPI_BaseURL } from "../../API/endPoints";
 
 // Layout wrapper
 import Layout from "../../components/Layout/Layout";

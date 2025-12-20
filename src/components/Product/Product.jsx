@@ -11,7 +11,7 @@ import Loader from "../../Pages/Loader/Loader";
 import ProductCard from "./ProductCard";
 
 // API base URL
-import { FakeStoreAPI_BaseURL } from "../../API/EndPoints";
+import { FakeStoreAPI_BaseURL } from "../../API/endPoints";
 
 const Product = () => {
   /* ===============================
