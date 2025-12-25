@@ -1,52 +1,118 @@
+/* =========================
+   CATEGORY CARD
+   ========================= */
 .category {
-  padding: 5px;
-  padding-top: 10px;
-  height: 300px;
-  width: 300px; 
+  padding: 10px;
+  height: 320px; /* consistent card height */
+  width: 100%;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* alignment fix */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.category:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   LINK
+   ========================= */
 .category a {
-  display: block;
-  object-fit: fill;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-decoration: none;
   color: rgb(35, 35, 35);
-  /* border: 1px solid red; */
 }
+
+/* =========================
+   IMAGE
+   ========================= */
 .category img {
   width: 100%;
+  height: 180px; /* fixed height prevents misalignment */
   object-fit: contain;
-  max-height: 200px;
   margin: 10px auto;
 }
-.category h2,
-.category p {
-  padding:3px 25px;
+
+/* =========================
+   TEXT
+   ========================= */
+.category h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 5px 20px;
+  line-height: 1.3;
 }
 
-.category h2{
-  font-size: 1.2rem;
-}
 .category p {
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 600;
   color: rgb(9, 132, 209);
+  padding: 5px 20px;
+  margin-top: auto; /* pushes link text to bottom */
 }
+
+/* =========================
+   GRID CONTAINER
+   ========================= */
 .category__container {
   position: relative;
+  z-index: 5;
   max-width: 1400px;
   padding: 30px;
-  margin: -20% auto auto auto;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin: -10% auto 0 auto;
+
   display: grid;
-  gap: 20px;
-  place-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  /* alignment fix */
+  align-items: stretch;
 }
 
+/* =========================
+   RESPONSIVE BREAKPOINTS
+   ========================= */
 
+/* Medium laptops → 3 per row */
+@media screen and (max-width: 1200px) {
+  .category__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets → 2 per row */
+@media screen and (max-width: 992px) {
+  .category__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile → 1 per row */
 @media screen and (max-width: 576px) {
-  .category{
-    width: 90%;
+  .category__container {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .category {
+    height: auto;
     text-align: center;
+  }
+
+  .category img {
+    height: 160px;
+  }
+
+  .category h2,
+  .category p {
+    padding: 6px 15px;
   }
 }

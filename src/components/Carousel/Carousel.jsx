@@ -13,7 +13,6 @@ function CarouselEffect() {
         showThumbs={false}
       >
         {img.map((imageItemLink, index) => {
-          // console.log(imageItemLink);
           return <img key={index} src={imageItemLink} />;
         })}
       </Carousel>

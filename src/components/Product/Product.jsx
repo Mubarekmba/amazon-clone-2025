@@ -14,9 +14,7 @@ import ProductCard from "./ProductCard";
 import { FakeStoreAPI_BaseURL } from "../../API/endPoints";
 
 const Product = () => {
-  /* ===============================
-     STATE MANAGEMENT
-     =============================== */
+  /* STATE MANAGEMENT */
 
   // Stores fetched products
   const [products, setProducts] = useState([]);
@@ -24,9 +22,7 @@ const Product = () => {
   // Controls loading spinner visibility
   const [isLoading, setIsLoading] = useState(false);
 
-  /* ===============================
-     FETCH PRODUCTS FROM API
-     =============================== */
+  /* FETCH PRODUCTS FROM API */
   useEffect(() => {
     // Show loader before API call
     setIsLoading(true);
@@ -44,9 +40,7 @@ const Product = () => {
       });
   }, []);
 
-  /* ===============================
-     RENDER UI
-     =============================== */
+  /* RENDER UI */
   return (
     <>
       {isLoading ? (

@@ -1,10 +1,4 @@
-// React hook for accessing context
 import { useContext } from "react";
-
-// CSS module for scoped styles
-import styles from "./header.module.css";
-
-// React Router link for navigation without page reload
 import { Link } from "react-router-dom";
 
 // Icons
@@ -12,43 +6,60 @@ import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 
-// Assets
-import amazonLogo from "../../assets/amazon_letter_white_logo.png";
+// Assets & styles
+import amazon_letter_logo from "../../assets/amazon_letter_white_logo.png";
+import styles from "./header.module.css";
 
-// Global state (basket/cart data)
-import { DataContext } from "../DataProvider/DataProvider.jsx";
+// Context & Firebase
+import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../utility/firebase";
+import { Type } from "../../utility/action.type";
 
-// Lower navigation bar component
+// Sub-header
 import LowerHeader from "./LowerHeader";
 
 const Header = () => {
   /**
-   * Access global state from DataContext
-   * We only need `basket`, so we destructure it
+   * Global state from Context
+   * - user: logged-in user info
+   * - basket: shopping cart items
    */
-  const [{ basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
 
   /**
-   * Calculate total number of items in the cart
-   * `reduce` loops through the basket and sums item.amount
+   * Calculate total number of items in cart
+   * (sums item.amount from basket)
    */
-  const totalItems = basket?.reduce((total, item) => {
+  const totalItem = basket?.reduce((total, item) => {
     return total + item.amount;
   }, 0);
 
+  /**
+   * Handles user sign-out
+   * - Clears basket
+   * - Signs out user from Firebase Auth
+   */
+  const handleSignOutAndClearCart = () => {
+    if (user) {
+      dispatch({ type: Type.EMPTY_BASKET });
+      auth.signOut();
+    }
+  };
+
   return (
     <section className={styles.fixed}>
-      {/* Main Header */}
       <section>
         <div className={styles.header__container}>
-          {/* ---------------- LOGO & DELIVERY ---------------- */}
+          {/* ================= Logo & Delivery ================= */}
           <div className={styles.logo__container}>
             <Link to="/">
-              <img src={amazonLogo} alt="Amazon logo" />
+              <img src={amazon_letter_logo} alt="Amazon logo" />
             </Link>
 
             <div className={styles.delivery}>
-              <SlLocationPin />
+              <span>
+                <SlLocationPin />
+              </span>
               <div>
                 <p>Deliver to</p>
                 <span>Ethiopia</span>
@@ -56,11 +67,11 @@ const Header = () => {
             </div>
           </div>
 
-          {/* ---------------- SEARCH BAR ---------------- */}
+          {/* ================= Search Bar ================= */}
           <div className={styles.search}>
             <select>
               <option>All</option>
-              <option>Art and Crafts</option>
+              <option>Art and crafts</option>
               <option>Automotive</option>
               <option>Books</option>
               <option>Electronics</option>
@@ -72,7 +83,7 @@ const Header = () => {
             <BsSearch size={42} />
           </div>
 
-          {/* ---------------- RIGHT MENU ---------------- */}
+          {/* ================= User / Orders / Cart ================= */}
           <div className={styles.order__container}>
             {/* Language selector */}
             <Link to="/" className={styles.language}>
@@ -85,24 +96,33 @@ const Header = () => {
               </select>
             </Link>
 
-            {/* Account section (static – no authentication yet) */}
-            <Link to="/">
+            {/* Sign In / Sign Out */}
+            <Link to={!user ? "/auth" : "#"}>
               <div>
-                <p>Hello, Guest</p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={handleSignOutAndClearCart}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
               </div>
             </Link>
 
-            {/* Orders page */}
+            {/* Orders */}
             <Link to="/orders">
               <p>Returns</p>
               <span>& Orders</span>
             </Link>
 
-            {/* Shopping Cart */}
+            {/* Cart */}
             <Link to="/cart" className={styles.cart}>
               <BiCart size={35} />
-              <span>{totalItems}</span>
+              <span>{totalItem}</span>
             </Link>
           </div>
         </div>

@@ -1,0 +1,125 @@
+/* Auth.module.css */
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f3f3f3;
+}
+
+.login img {
+  margin: 25px auto;
+  width: 110px;
+  object-fit: contain;
+}
+
+.login__container {
+  width: 360px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.login__container h1 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.login__container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login__container form div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login__container label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.login__container input {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #a6a6a6;
+}
+
+.login__container input:focus {
+  outline: none;
+  border-color: #f0c14b;
+  box-shadow: 0 0 0 2px rgba(240, 193, 75, 0.4);
+}
+
+.login__signInButton {
+  margin-top: 15px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #a88734;
+  background: linear-gradient(#f7dfa5, #f0c14b);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login__signInButton:hover {
+  background: linear-gradient(#f5d78e, #eeb933);
+}
+
+.login__container p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 15px 0;
+  color: #555;
+}
+
+.login__registerButton {
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #888;
+  background: #e7e9ec;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login__registerButton:hover {
+  background: #d5d9d9;
+}
+
+.error_holder {
+  margin-top: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #cc0c39;
+  color: #ffffff;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.error__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ffffff;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+  .login__container {
+    width: 90%;
+    padding: 20px;
+  }
+}
