@@ -7,14 +7,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCWbSrjvEz49ceOTVJw6QLP-D0AYUwyI_w",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "clone-e126f.firebaseapp.com",
   projectId: "clone-e126f",
   storageBucket: "clone-e126f.firebasestorage.app",
   messagingSenderId: "301162736630",
   appId: "1:301162736630:web:6df4463c4e58d9e090f5d7",
 };
-
 // ✅ CREATE THE APP
 const app = initializeApp(firebaseConfig);
 
